@@ -4,6 +4,7 @@ import { useContext } from "react";
 
 export default function Home() {
   const { logOut, token } = useContext(AuthContext);
+  console.log(token);
 
   return (
     <main>

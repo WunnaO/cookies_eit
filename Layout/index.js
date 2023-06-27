@@ -5,13 +5,14 @@ import { useRouter } from "next/router";
 import React, { useContext, useEffect } from "react";
 
 const Layout = ({ children }) => {
-  const { isAuth, setIsAuth, getCookie, deleteCookie } =
+  const { isAuth, setIsAuth, getCookie, deleteCookie, setToken } =
     useContext(AuthContext);
   const router = useRouter();
 
   const currentPaths = router.pathname;
 
   const chkToken = async () => {
+    setToken(getCookie("ee_t"));
     const token = getCookie("ee_t");
 
     if (token) {

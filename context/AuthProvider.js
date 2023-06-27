@@ -83,8 +83,6 @@ const AuthProvider = ({ children }) => {
       setError(true);
       setInvalidData(false);
     }
-
-    setToken(getCookie("ee_t"));
   };
 
   const logOut = () => {
