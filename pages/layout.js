@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
 
 const Layout = ({ children }) => {
-  const { isAuth, setIsAuth, setToken, token } = useContext(AuthContext);
+  const { isAuth, setIsAuth, setToken } = useContext(AuthContext);
   const router = useRouter();
 
   const currentPaths = router.pathname;
