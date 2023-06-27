@@ -13,6 +13,7 @@ export default function Home() {
             <button className="text-black border border-solid border-slate-900 p-2">
               <Link href="/login">
                 <p onClick={logOut}>Logout</p>
+                {/* Logout */}
               </Link>
             </button>
           </div>

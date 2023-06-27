@@ -1,9 +1,9 @@
 import Loading from "@/components/Loading";
 import { AuthContext } from "@/context/AuthProvider";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
-function Login() {
+const Login = () => {
   const [chkToken, setChkToken] = useState(false);
   const inputRef = useRef(null);
   const router = useRouter();
@@ -19,7 +19,7 @@ function Login() {
   let token;
   useEffect(() => {
     if (typeof window !== "undefined") {
-      token = localStorage.getItem("Token");
+      token = localStorage.getItem("ee_t");
     }
 
     if (token) {
@@ -105,6 +105,6 @@ function Login() {
       </div>
     )
   );
-}
+};
 
 export default Login;

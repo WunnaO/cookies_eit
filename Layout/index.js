@@ -1,10 +1,8 @@
-"use client";
-
 import { AuthContext } from "@/context/AuthProvider";
 import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
-const Layout = ({ children }) => {
+const Layout = () => {
   const { isAuth, setIsAuth, setToken } = useContext(AuthContext);
   const router = useRouter();
 

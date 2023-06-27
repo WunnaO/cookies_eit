@@ -1,9 +1,9 @@
-import React, { createContext, useState } from "react";
 import { useRouter } from "next/router";
+import React, { createContext, useState } from "react";
 
-export const AuthContext = createContext(null);
+export const AuthContext = createContext();
 
-function AuthProvider({ children }) {
+const AuthProvider = ({ children }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
@@ -16,6 +16,8 @@ function AuthProvider({ children }) {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    setUserName("");
+    setPassword("");
 
     if (userName && password) {
       setLoading(true);
@@ -85,6 +87,6 @@ function AuthProvider({ children }) {
       {children}
     </AuthContext.Provider>
   );
-}
+};
 
 export default AuthProvider;

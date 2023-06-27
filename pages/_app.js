@@ -1,14 +1,16 @@
+"use client";
+
+import Layout from "@/Layout";
 import AuthProvider from "@/context/AuthProvider";
 import "@/globals.css";
 import { useRouter } from "next/router";
-import Layout from "./layout";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
   let token;
   if (typeof window !== "undefined") {
-    token = localStorage.getItem("Token");
+    token = localStorage.getItem("ee_t");
   }
 
   return (
