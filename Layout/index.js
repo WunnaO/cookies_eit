@@ -1,22 +1,17 @@
+"use client";
+
 import { AuthContext } from "@/context/AuthProvider";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect } from "react";
 
-const Layout = () => {
-  const { isAuth, setIsAuth, setToken } = useContext(AuthContext);
+const Layout = ({ children }) => {
+  const { isAuth, setIsAuth } = useContext(AuthContext);
   const router = useRouter();
 
   const currentPaths = router.pathname;
 
-  if (typeof window !== "undefined") {
-    setToken(localStorage.getItem("ee_t"));
-  }
-
-  useEffect(async () => {
+  const chkToken = async () => {
     const token = localStorage.getItem("ee_t");
-    const Auth_token = {
-      token,
-    };
 
     if (token) {
       const res = await fetch(
@@ -24,7 +19,7 @@ const Layout = () => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(Auth_token),
+          body: JSON.stringify({ token }),
         }
       );
 
@@ -38,6 +33,10 @@ const Layout = () => {
     } else {
       router.push("/login");
     }
+  };
+
+  useEffect(() => {
+    chkToken();
   }, [currentPaths]);
 
   return <>{isAuth && <main>{children}</main>}</>;

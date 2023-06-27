@@ -57,10 +57,13 @@ const AuthProvider = ({ children }) => {
       setError(true);
       setInvalidData(false);
     }
+
+    setToken(localStorage.getItem("ee_t"));
   };
 
   const logOut = () => {
     localStorage.removeItem("ee_t");
+    setIsAuth(false);
     setLoading(false);
     setError(false);
     setInvalidData(false);

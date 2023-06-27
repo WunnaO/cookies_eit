@@ -20,7 +20,6 @@ export default function Home() {
         )}
       </div>
       <br />
-      <br />
       <div>
         <button className="text-black border border-solid border-slate-900 p-2">
           <Link href="/certificate" key="certificate">
