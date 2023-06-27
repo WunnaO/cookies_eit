@@ -14,6 +14,32 @@ const AuthProvider = ({ children }) => {
 
   const router = useRouter();
 
+  /// COOKIES /********************************* *///
+  const setCookie = (name, value, exDays) => {
+    const date = new Date();
+    date.setTime(date.getTime() + exDays * 24 * 60 * 60 * 1000);
+    const expires = "expires=" + date.toUTCString();
+    document.cookie = `${name}=${value};${expires};path=/`;
+  };
+
+  const deleteCookie = (name) => {
+    setCookie(name, null, null);
+  };
+
+  const getCookie = (name) => {
+    const DecodedCookie = decodeURIComponent(document.cookie);
+    const CookieArray = DecodedCookie.split(";");
+    let result;
+
+    CookieArray.map((data) => {
+      if (data.indexOf(name) === 0) {
+        result = data.substring(name.length + 1);
+      }
+    });
+    return result;
+  };
+  /// COOKIES /********************************* *///
+
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     setUserName("");
@@ -43,7 +69,7 @@ const AuthProvider = ({ children }) => {
         setIsAuth(true);
         const data = await response.json();
         console.log(data);
-        localStorage.setItem("ee_t", data.token);
+        setCookie("ee_t", data.token, 365);
         if (data) {
           router.push("/");
         } else {
@@ -58,11 +84,11 @@ const AuthProvider = ({ children }) => {
       setInvalidData(false);
     }
 
-    setToken(localStorage.getItem("ee_t"));
+    setToken(getCookie("ee_t"));
   };
 
   const logOut = () => {
-    localStorage.removeItem("ee_t");
+    deleteCookie("ee_t");
     setIsAuth(false);
     setLoading(false);
     setError(false);
@@ -85,6 +111,9 @@ const AuthProvider = ({ children }) => {
         setIsAuth,
         setToken,
         token,
+        setCookie,
+        getCookie,
+        deleteCookie,
       }}
     >
       {children}

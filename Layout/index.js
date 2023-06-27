@@ -5,13 +5,14 @@ import { useRouter } from "next/router";
 import React, { useContext, useEffect } from "react";
 
 const Layout = ({ children }) => {
-  const { isAuth, setIsAuth } = useContext(AuthContext);
+  const { isAuth, setIsAuth, getCookie, deleteCookie } =
+    useContext(AuthContext);
   const router = useRouter();
 
   const currentPaths = router.pathname;
 
   const chkToken = async () => {
-    const token = localStorage.getItem("ee_t");
+    const token = getCookie("ee_t");
 
     if (token) {
       const res = await fetch(
@@ -24,7 +25,7 @@ const Layout = ({ children }) => {
       );
 
       if (!res.ok) {
-        localStorage.removeItem("ee_t");
+        deleteCookie("ee_t");
         router.push("/login");
       } else {
         router.push(currentPaths);

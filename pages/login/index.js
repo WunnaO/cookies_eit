@@ -14,14 +14,11 @@ const Login = () => {
     error,
     invalidData,
     loading,
+    getCookie,
   } = useContext(AuthContext);
 
-  let token;
+  const token = getCookie("ee_t");
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      token = localStorage.getItem("ee_t");
-    }
-
     if (token) {
       setChkToken(true);
       router.push("/");
