@@ -19,19 +19,11 @@ export default function Home() {
         )}
       </div>
       <br />
-
-      <div>
-        <button className="text-black border border-solid border-slate-900 p-2">
-          <Link href="/section" key="section">
-            Click To Section Page
-          </Link>
-        </button>
-      </div>
       <br />
       <div>
         <button className="text-black border border-solid border-slate-900 p-2">
-          <Link href="/course" key="course">
-            Click To Course Page
+          <Link href="/certificate" key="certificate">
+            Go To Certificate Valid Page
           </Link>
         </button>
       </div>
