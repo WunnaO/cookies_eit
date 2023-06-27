@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background: #e5e5e5;
+}
+
+.container {
+  margin-left: 24px;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  outline: 0;
+  border: 1px solid #093a8b;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  box-shadow: none;
+
+  background-image: none;
+}
+select::-ms-expand {
+  display: flex;
+}
+.select {
+  position: relative;
+  display: flex;
+}
+select {
+  flex: 1;
+  color: #5d5a5a !important;
+  cursor: pointer;
+  padding: 9px 16px !important;
+}
+.select::after {
+  content: "";
+  background-image: url(./assets/image/arrow.png);
+  position: absolute;
+  top: 38%;
+  right: 0%;
+  background-repeat: no-repeat;
+  padding: 17px;
+  cursor: pointer;
+  pointer-events: none;
+  transition: 0.25s all ease;
+  -webkit-transition: 0.25s all ease;
+  -moz-transition: 0.25s all ease;
+  -ms-transition: 0.25s all ease;
+  -o-transition: 0.25s all ease;
+}
+
+table,
+tbody,
+th,
+td {
+  border: 1px solid grey;
+  /* border-collapse: collapse; */
+  padding: 5px 15px;
+}
+tr > td {
+  text-align: center;
+}
