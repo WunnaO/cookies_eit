@@ -1,3 +1,4 @@
+import config from "@/config";
 import { useRouter } from "next/router";
 import React, { createContext, useState } from "react";
 
@@ -10,17 +11,16 @@ const AuthProvider = ({ children }) => {
   const [invalidData, setInvalidData] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
-  const [token, setToken] = useState("");
 
   const router = useRouter();
 
   /// COOKIES /********************************* *///
-  const setCookie = (name, value, exDays) => {
+  function setCookie(name, value, exDays) {
     const date = new Date();
     date.setTime(date.getTime() + exDays * 24 * 60 * 60 * 1000);
     const expires = "expires=" + date.toUTCString();
     document.cookie = `${name}=${value};${expires};path=/`;
-  };
+  }
 
   const deleteCookie = (name) => {
     setCookie(name, null, null);
@@ -49,7 +49,7 @@ const AuthProvider = ({ children }) => {
       setLoading(true);
       const requestOptions = {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: config.headers,
         body: JSON.stringify({
           username: userName,
           password: password,
@@ -107,8 +107,6 @@ const AuthProvider = ({ children }) => {
         loading,
         isAuth,
         setIsAuth,
-        setToken,
-        token,
         setCookie,
         getCookie,
         deleteCookie,

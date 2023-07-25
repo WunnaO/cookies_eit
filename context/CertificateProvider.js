@@ -1,3 +1,4 @@
+import config from "@/config";
 import { createContext, useState } from "react";
 
 export const CertificateContext = createContext();
@@ -17,9 +18,7 @@ const CertificateProvider = ({ children }) => {
     const res = await fetch(
       `https://api.eitlearningcampus.org/api/v1/public/certificate/check/${cerId}`,
       {
-        headers: {
-          Key: "I069fUF1Xg69OI2JWTrRPWLbMUB1p7NCUsTJc+sbR0k=",
-        },
+        headers: config.headers,
       }
     );
 

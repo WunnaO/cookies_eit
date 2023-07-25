@@ -1,18 +1,18 @@
 "use client";
 
+import config from "@/config";
 import { AuthContext } from "@/context/AuthProvider";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect } from "react";
 
 const Layout = ({ children }) => {
-  const { isAuth, setIsAuth, getCookie, deleteCookie, setToken } =
+  const { isAuth, setIsAuth, getCookie, deleteCookie } =
     useContext(AuthContext);
   const router = useRouter();
 
   const currentPaths = router.pathname;
 
   const chkToken = async () => {
-    setToken(getCookie("ee_t"));
     const token = getCookie("ee_t");
 
     if (token) {
@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
         "https://api.eitlearningcampus.org/api/v1/auth/check",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: config.headers,
           body: JSON.stringify({ token }),
         }
       );

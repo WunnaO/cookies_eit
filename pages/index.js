@@ -3,13 +3,13 @@ import Link from "next/link";
 import { useContext } from "react";
 
 export default function Home() {
-  const { logOut, token } = useContext(AuthContext);
-  console.log(token);
+  const { logOut, isAuth } = useContext(AuthContext);
+  console.log(isAuth);
 
   return (
     <main>
       <div>
-        {token && (
+        {isAuth && (
           <div>
             <button className="text-black border border-solid border-slate-900 p-2">
               <Link href="/login">
